@@ -15,7 +15,7 @@ const BotonActivado = styled.button`
 
     &:hover {
         background: #f9f7f7;
-        color: rgb(111, 111, 111);
+        color: rgb(226, 226, 226);
     }
 `;
 

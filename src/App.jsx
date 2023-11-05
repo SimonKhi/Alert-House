@@ -18,7 +18,6 @@ const App = () => {
 const ContenedorPrincipal = styled.div`
     padding: 0px;
     width: 100%;
-    height: calc(100vh - 55px);
 `;
 
 // const Main = styled.main`
