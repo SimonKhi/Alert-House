@@ -12,7 +12,7 @@ const Ventana = ({name}) => {
 
     useEffect(() => {
         if(estadoBoton === true) {
-            if(condicion ===false){
+            if(condicion === false){
                 MostrarNotificacion(name);
             }
         }

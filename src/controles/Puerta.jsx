@@ -8,18 +8,20 @@ import './alerta.css';
 
 const Puerta = ({name}) => {
     const [estadoBoton, cambiarEstadoBoton] = useState(true);
-    const [condicion, cambiarCondicion] = useState(false);
+    /* Este valor (condicion) se saca de la BD, si la puerta esta cerrada = True, si esta abierta = False */
+    const [condicion, cambiarCondicion] = useState(true); 
 
     useEffect(() => {
         if(estadoBoton === true) {
-            if(condicion ===false){
+            if(condicion === false){
                 MostrarNotificacion(name);
             }
         }
-    }, [estadoBoton, condicion, name])
+    }, [estadoBoton, condicion])
 
     return (
         <div className='alineacion'>
+            <div className='tam'>
             {estadoBoton === true ?
                 <>
                 {condicion === true ?
@@ -37,6 +39,7 @@ const Puerta = ({name}) => {
                     <img width="100%" src={PuertaCerrada} alt="" />
                 </div>
             }
+            </div>
             <br />
             <Switch
                 checkedChildren={<CheckOutlined />}

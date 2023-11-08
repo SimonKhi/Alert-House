@@ -1,0 +1,39 @@
+.superior{
+    width: 100%;
+    display: flex;
+}
+
+.controles {
+    flex: 4;
+    padding: 15px;
+}
+
+.contenedorAlarma {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px;
+    flex: 3;
+}
+
+.contenedorSensores {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    column-gap: 45px;
+    row-gap: 15px;
+    padding: 15px;
+}
+
+#tituloSensores{
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 1023px) {
+    .superior {
+        display: contents;
+    }
+}
