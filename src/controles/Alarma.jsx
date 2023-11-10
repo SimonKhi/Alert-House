@@ -6,7 +6,7 @@ import "./alarma.css";
 
 const Alarma = () => {
     const [estadoAlarma, cambiarEstadoAlarma] = useState(true);
-    const [condicion, cambiarCondicion] = useState(true);
+    const [condicion, cambiarCondicion] = useState(false);
 
     const AccionButton = () => {
         cambiarEstadoAlarma(!estadoAlarma);

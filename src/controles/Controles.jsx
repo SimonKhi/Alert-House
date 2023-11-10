@@ -8,20 +8,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 const Controles = () => {
-    const [visible, cambiarVisible] = useState(false);
-
-    const MostrarModal = () => {
-        cambiarVisible(true);
-    };  
+    const [visibleAgregar, cambiarVisibleAgregar] = useState(false);
 
     return (
         <ContenedorSensores>
-            <NuevoSensor />
             <ContenedorAgregar>
-                <BotonAgregar color={theme.borde} onClick={MostrarModal}>
+                <BotonAgregar onClick={() => cambiarVisibleAgregar(true)}>
                     <FontAwesomeIcon icon={faCirclePlus} size='5x'/>
                 </BotonAgregar>
-                <ModuloAgregar visible={visible} cambiarVisible={cambiarVisible}/>
+                <ModuloAgregar visible={visibleAgregar} cambiarVisible={cambiarVisibleAgregar}/>
             </ContenedorAgregar>
         </ContenedorSensores>
     );
