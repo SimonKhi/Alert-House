@@ -12,6 +12,7 @@ const Controles = () => {
 
     return (
         <ContenedorSensores>
+            <NuevoSensor />
             <ContenedorAgregar>
                 <BotonAgregar onClick={() => cambiarVisibleAgregar(true)}>
                     <FontAwesomeIcon icon={faCirclePlus} size='5x'/>
@@ -24,13 +25,14 @@ const Controles = () => {
  
 const ContenedorSensores = styled.div`
     display: grid;
-    width: 96%;
-    /* min-height: 185px; */
+    width: calc(100%-15px);
+    max-height: 165px;
     border: solid ${theme.borde};
     border-radius: 10px;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 10px;
     padding: 8px;
+    overflow: auto;
 `;
 
 const ContenedorAgregar = styled.div`

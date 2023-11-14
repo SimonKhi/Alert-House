@@ -5,10 +5,10 @@ import Icono from "../imagenes/icono.png";
 const Header = () => {
     return (
         <ContenedorHeader>
-            {/* <div> */}
+            <Logo href="/" >
                 <Imagen src={Icono} alt="" />
                 <Titulo>Alert house</Titulo>
-            {/* </div> */}
+            </Logo>
         </ContenedorHeader>
     );
 }
@@ -18,6 +18,7 @@ const ContenedorHeader = styled.div`
     justify-content: center;
     align-items: center;
     height: 55px;
+    max-width: 100vw;
     /* background-color: #001011; */
 `;
 
@@ -28,9 +29,16 @@ const Titulo = styled.h2`
 `;
 
 const Imagen = styled.img`
-    /* display: block; */
     height: 70%;
     padding-right: 10px;
+    color: red;
+`;
+
+const Logo = styled.a`
+    display: flex;
+    height: 55px;
+    text-decoration: none;
+    align-items: center;
 `;
 
 export default Header;

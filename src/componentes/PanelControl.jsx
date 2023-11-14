@@ -1,11 +1,8 @@
-import styled from 'styled-components';
-import { Row, Col, Typography } from 'antd';
+import { Typography } from 'antd';
 import Controles from '../controles/Controles';
 import Alarma from '../controles/Alarma';
-import Ventana from '../controles/Ventana';
-import Puerta from '../controles/Puerta';
+import Sensores from '../controles/Sensores';
 import './panelControl.css';
-import theme from '../theme';
 
 const PanelControl = () => {
     return (
@@ -21,15 +18,8 @@ const PanelControl = () => {
                 </div>
             </div>
             <div className='contenedorSensores'>
-                <Typography.Title level={3} id='tituloSensores'>Zona de sensores</Typography.Title>
-                <div>
-                    <Typography.Title level={5} align="center">Puerta Principal</Typography.Title>
-                    <Puerta component="Magnetic_1" name="Puerta Principal"/>
-                </div>
-                <div>
-                    <Typography.Title level={5} align="center">Ventana Sala</Typography.Title>
-                    <Ventana component="PIR_3" name="Ventana de la Sala"/>
-                </div>
+                <Typography.Title level={3} id='tituloSensores'>Sensores</Typography.Title>
+                <Sensores />
             </div>
         </>
     );

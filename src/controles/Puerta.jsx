@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Switch } from 'antd';
+import { Switch, Typography } from 'antd';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import PuertaAbierta from '../imagenes/PuertaAbierta.png';
 import PuertaCerrada from '../imagenes/PuertaCerrada.png';
@@ -21,6 +21,7 @@ const Puerta = ({name}) => {
 
     return (
         <div className='alineacion'>
+            <Typography.Title level={5}>{name}</Typography.Title>
             <div className='tam'>
             {estadoBoton === true ?
                 <>
@@ -40,7 +41,7 @@ const Puerta = ({name}) => {
                 </div>
             }
             </div>
-            <br />
+            <br/>
             <Switch
                 checkedChildren={<CheckOutlined />}
                 unCheckedChildren={<CloseOutlined />}

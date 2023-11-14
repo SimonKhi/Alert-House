@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Switch } from 'antd';
+import { Switch, Typography } from 'antd';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
-import VentanaAbierta from '../imagenes/VentanaAbierta.png';
+import VentanaAbierta from '../imagenes/ventanaAbierta.png';
 import VentanaCerrada from '../imagenes/VentanaCerrada.png';
 import { MostrarNotificacion } from './MostrarNotificacion';
 import './alerta.css';
@@ -20,6 +20,7 @@ const Ventana = ({name}) => {
 
     return (
         <div className='alineacion'>
+            <Typography.Title level={5}>{name}</Typography.Title>
             {estadoBoton === true ?
                 <>
                 {condicion === true ?
@@ -30,6 +31,7 @@ const Ventana = ({name}) => {
                     <div className='abierta'>
                         <img width="100%" src={VentanaAbierta} alt="venab" />
                     </div>
+
                 }
                 </>
                 :

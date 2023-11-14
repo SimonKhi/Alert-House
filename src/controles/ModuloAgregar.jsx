@@ -6,15 +6,14 @@ const ModuloAgregar = ({ visible, cambiarVisible}) => {
         { id:1, nombre:"Puerta Principal", tipo:"Puerta"}, 
         {id:2, nombre:"Ventana Sala", tipo:"Ventana"},
     ]);
-    
     const [formulario] = Form.useForm();
-
     const { Option } = Select;
 
     const NuevoSensor = (values) => {
         console.log('Mostrar valores', values);
         cambiarSensore([...sensores, {id: 3, nombre:values.nombre, tipo:values.acceso}])
         cambiarVisible(false);
+        console.log(sensores);
     }
 
     const CerrarModal = () => {
