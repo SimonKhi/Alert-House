@@ -1,12 +1,16 @@
+import { Helmet } from 'react-helmet';
 import { Typography } from 'antd';
-import Controles from '../controles/Controles';
-import Alarma from '../controles/Alarma';
-import Sensores from '../controles/Sensores';
+import Controles from '../controls/Controles';
+import Alarma from '../controls/Alarma';
+import Sensores from '../controls/Sensores';
 import './panelControl.css';
 
 const PanelControl = () => {
     return (
         <>
+            <Helmet>
+                <title>Alert House</title>
+            </Helmet>
             <div className='superior'>
                 <div className='controles'>
                     <Typography.Title type='warning' level={3}>Controles</Typography.Title>

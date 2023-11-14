@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Typography } from 'antd';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
-import VentanaAbierta from '../imagenes/ventanaAbierta.png';
-import VentanaCerrada from '../imagenes/VentanaCerrada.png';
+import PuertaAbierta from '../images/PuertaAbierta.png';
+import PuertaCerrada from '../images/PuertaCerrada.png';
 import { MostrarNotificacion } from './MostrarNotificacion';
 import './alerta.css';
 
-const Ventana = ({name}) => {
-    const [estadoBoton, cambiarEstadoBoton] = useState(false);
-    const [condicion, cambiarCondicion] = useState(false);
+const Puerta = ({name}) => {
+    const [estadoBoton, cambiarEstadoBoton] = useState(true);
+    /* Este valor (condicion) se saca de la BD, si la puerta esta cerrada = True, si esta abierta = False */
+    const [condicion, cambiarCondicion] = useState(true); 
 
     useEffect(() => {
         if(estadoBoton === true) {
@@ -16,30 +17,31 @@ const Ventana = ({name}) => {
                 MostrarNotificacion(name);
             }
         }
-    }, [estadoBoton, condicion, name])
+    }, [estadoBoton, condicion])
 
     return (
         <div className='alineacion'>
             <Typography.Title level={5}>{name}</Typography.Title>
+            <div className='tam'>
             {estadoBoton === true ?
                 <>
                 {condicion === true ?
                     <div className='cerrada'>
-                        <img width="100%" src={VentanaCerrada} alt="vence" />
+                        <img width="100%" src={PuertaCerrada} alt="" />
                     </div>
                     :
                     <div className='abierta'>
-                        <img width="100%" src={VentanaAbierta} alt="venab" />
+                        <img width="100%" src={PuertaAbierta} alt="" />
                     </div>
-
                 }
                 </>
                 :
                 <div>
-                    <img width="100%" src={VentanaCerrada} alt="vence" />
+                    <img width="100%" src={PuertaCerrada} alt="" />
                 </div>
             }
-            <br />
+            </div>
+            <br/>
             <Switch
                 checkedChildren={<CheckOutlined />}
                 unCheckedChildren={<CloseOutlined />}
@@ -50,4 +52,4 @@ const Ventana = ({name}) => {
     );
 }
  
-export default Ventana;
+export default Puerta;

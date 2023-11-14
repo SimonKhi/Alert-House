@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import theme from "../theme";
-import Icono from "../imagenes/icono.png";
+import Icono from "../images/icono.png";
 
 const Header = () => {
     return (

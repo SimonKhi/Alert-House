@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Button, message } from 'antd';
 import { Helmet } from 'react-helmet';
-import Crearcuenta from '../imagenes/agregar-usuario.png';
+import Crearcuenta from '../images/agregar-usuario.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import { faLock, faAt } from '@fortawesome/free-solid-svg-icons';
@@ -32,10 +32,12 @@ const CrearCuenta = () => {
                 <title>Crear Cuenta</title>
             </Helmet>
             <Centrar>
-                <Imagen>
-                    <img src={Crearcuenta} width="35%" alt="" styled="justify-content: center"/>
-                </Imagen>
                 <Form form={form} name='registrarse' scrollToFirstError className='login-form' onFinish={handleSubmit} size='large'>
+                    <Form.Item>
+                        <Imagen>
+                            <img src={Crearcuenta} width="35%" alt="" styled="justify-content: center"/>
+                        </Imagen>        
+                    </Form.Item>
                     <Form.Item name='email' rules={[
                         { type: 'email', message: 'Introduzca un correo válido',},
                         { required: true, message: 'Introduzca un correo electrónico' },
@@ -65,7 +67,7 @@ const CrearCuenta = () => {
                         <Button type="primary" htmlType="submit" className="login-form-button" style={{width: "100%"}}>
                             Crear Cuenta
                         </Button>
-                        O <a href="/iniciar-sesion" style={{justifyContent: "start"}}>Iniciar Sesión</a>
+                        O <Button type='link' href="/iniciar-sesion" >Iniciar Sesión</Button>
                     </Form.Item>
                 </Form>
             </Centrar>
@@ -94,7 +96,6 @@ const Imagen = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;    
-    padding-bottom: 20px;
 `;
  
 export default CrearCuenta;

@@ -1,6 +1,6 @@
 import React from 'react';
-import Ventana from '../controles/Ventana';
-import Puerta from '../controles/Puerta';
+import Ventana from './Ventana';
+import Puerta from './Puerta';
 
 const Sensores = () => {
     return (

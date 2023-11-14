@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
-import Header from './componentes/Header';
-import PanelControl from './componentes/PanelControl';
-import InicioSesion from './componentes/InicioSesion';
-import CrearCuenta from './componentes/CrearCuenta';
+import Header from './components/Header';
+import PanelControl from './components/PanelControl';
+import InicioSesion from './components/InicioSesion';
+import CrearCuenta from './components/CrearCuenta';
 
 const App = () => {
     return (
