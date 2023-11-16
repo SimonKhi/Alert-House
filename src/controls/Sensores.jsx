@@ -7,8 +7,6 @@ const Sensores = () => {
         <>
             <Puerta name="Puerta Principal" />
             <Ventana name="Ventana Sala" />
-            <Ventana name="ventana comedor" />
-            <Ventana name="Ventana Cocina" />
         </>
     );
 }

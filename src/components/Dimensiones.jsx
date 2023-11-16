@@ -1,23 +1,29 @@
-.superior{
+import styled from "styled-components";
+
+const Superior = styled.div`
     width: 100%;
     display: flex;
-}
 
-.controles {
+    @media (max-width: 1023px) {
+        display: block;
+    }
+`;
+
+const ContenedorControles = styled.div`
     flex: 4;
     padding: 15px;
-}
+`;
 
-.contenedorAlarma {
+const ContenedorAlarma = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     padding: 15px;
     flex: 3;
-}
+`;
 
-.contenedorSensores {
+const ContenedorSensores = styled.div`
     max-width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -25,16 +31,12 @@
     row-gap: 15px;
     padding: 15px;
     align-items: end;
-}
+`;
 
-#tituloSensores{
+const TituloSensores = styled.div`
     grid-column: 1 / -1;
     display: flex;
     justify-content: center;
-}
+`;
 
-@media only screen and (max-width: 1023px) {
-    .superior {
-        display: contents;
-    }
-}
+export { Superior, ContenedorAlarma, ContenedorControles, ContenedorSensores, TituloSensores };

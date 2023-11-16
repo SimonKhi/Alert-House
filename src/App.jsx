@@ -5,20 +5,30 @@ import Header from './components/Header';
 import PanelControl from './components/PanelControl';
 import InicioSesion from './components/InicioSesion';
 import CrearCuenta from './components/CrearCuenta';
+import Error404 from './components/Error404';
+import { AuthProvider } from './context/AuthContext';
+import RutaPrivada from './components/RutaPrivada';
 
 const App = () => {
-    return (
-        <BrowserRouter>
-          <ContenedorPrincipal>
-              <Header />
-              <Routes>
-                <Route path='/iniciar-sesion' element={<InicioSesion />}/>
-                <Route path='/crear-cuenta' element={<CrearCuenta />}/>
-                <Route path='/' element={<PanelControl />}/>
-              </Routes>
-          </ContenedorPrincipal>
-        </BrowserRouter>
-    )
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <ContenedorPrincipal>
+          <Header />
+          <Routes>
+            <Route path='*' element={<Error404 />}/>
+            <Route path='/iniciar-sesion' element={<InicioSesion />}/>
+            <Route path='/crear-cuenta' element={<CrearCuenta />}/>
+            <Route path='/' element={
+              <RutaPrivada>
+                <PanelControl/>
+              </RutaPrivada>
+            }/>
+          </Routes>
+        </ContenedorPrincipal>
+      </BrowserRouter>
+    </AuthProvider>
+  )
 }
 
 const ContenedorPrincipal = styled.div`

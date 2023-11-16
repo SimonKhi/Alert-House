@@ -18,12 +18,21 @@ const InicioSesion = () => {
             await signInWithEmailAndPassword(auth, values.email, values.password);
             navigate('/');
         }catch(error){
-            console.log(error.code);
-            console.log(error.message);
-            message.open({
-                type: 'error',
-                content: 'El correo y/o la contraseña son incorrectos'
-            });
+            console.log('code',error.code); 
+            console.log('message', error.message);
+            let mensaje;
+            switch(error.code){
+                case 'auth/network-request-failed':
+                    mensaje = 'Hubo un fallo en la conexión';
+                break;
+                case 'auth/invalid-login-credentials':
+                    mensaje = 'El correo y/o la contraseña son incorrectos';
+                break;
+                default:
+                    mensaje = 'Hubo un error al intentar iniciar sesión';
+                break;
+            }
+            message.open({ type: 'error', content: mensaje });
         }
     }
 
