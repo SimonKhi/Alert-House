@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Typography } from 'antd';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
-import PuertaAbierta from '../images/PuertaAbierta.png';
-import PuertaCerrada from '../images/PuertaCerrada.png';
+import styled from 'styled-components';
+import PuertaAbierta from '../images/puertaabierta.webp';
+import PuertaCerrada from '../images/puertacerrada.webp';
 import { MostrarNotificacion } from './MostrarNotificacion';
-import './alerta.css';
 
 const Puerta = ({name}) => {
     const [estadoBoton, cambiarEstadoBoton] = useState(true);
@@ -20,27 +20,21 @@ const Puerta = ({name}) => {
     }, [estadoBoton, condicion])
 
     return (
-        <div className='alineacion'>
+        <Alineacion>
             <Typography.Title level={5}>{name}</Typography.Title>
-            <div className='tam'>
+            <Tam>
             {estadoBoton === true ?
                 <>
                 {condicion === true ?
-                    <div className='cerrada'>
-                        <img width="100%" src={PuertaCerrada} alt="" />
-                    </div>
+                    <img width="100%" src={PuertaCerrada} alt="" />
                     :
-                    <div className='abierta'>
-                        <img width="100%" src={PuertaAbierta} alt="" />
-                    </div>
+                    <img width="100%" src={PuertaAbierta} alt="" />
                 }
                 </>
                 :
-                <div>
-                    <img width="100%" src={PuertaCerrada} alt="" />
-                </div>
+                <img width="100%" src={PuertaCerrada} alt="" />
             }
-            </div>
+            </Tam>
             <br/>
             <Switch
                 checkedChildren={<CheckOutlined />}
@@ -48,8 +42,18 @@ const Puerta = ({name}) => {
                 checked={estadoBoton}
                 onChange={(value) => cambiarEstadoBoton(value)}
             />
-        </div>
+        </Alineacion>
     );
 }
+
+const Tam = styled.div`
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+`;
+
+const Alineacion = styled.div`
+    text-align: center;
+`;
  
 export default Puerta;

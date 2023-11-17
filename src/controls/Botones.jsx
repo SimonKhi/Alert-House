@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import theme from "../theme";
 
 const BotonActivado = styled.button`
@@ -54,4 +55,29 @@ const BotonAgregar = styled.div`
     border: 5px solid ${theme.borde};
 `;
 
-export {BotonActivado, BotonDesactivado, BotonSensor, BotonAgregar};
+const BotonLink = styled(Link)`
+    display: inline-flex;
+    column-gap: 0.5rem;
+    align-items: center;
+    font-size: larger;
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    max-width: 135px;
+    border: none;
+
+    :hover {
+        color: gray;
+    }
+
+    @media(max-width: 481px) {
+        width: ${(props) => props.seleccion ? '135px' : '30px'};
+    }
+`;
+
+const BotonTexto = styled.span`
+    @media (max-width: 481px) {
+        display: none;
+    }
+`;
+export { BotonActivado, BotonDesactivado, BotonSensor, BotonAgregar, BotonLink, BotonTexto };

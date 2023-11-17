@@ -37,3 +37,8 @@
     animation-play-state: running;
     animation-name: flash;
 }
+
+.notifica {
+    border: 2px solid rgb(255, 229, 143) !important;
+    background-color: rgb(255, 251, 230) !important;
+}

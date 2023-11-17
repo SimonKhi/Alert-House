@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Typography } from 'antd';
-import SensorAbierto from '../images/sensor_abierto.png';
-import SensorCerrado from '../images/sensor_cerrado.png';
+import SensorAbierto from '../images/sensor-abierto.webp';
+import SensorCerrado from '../images/sensor-cerrado.webp';
 import { BotonSensor } from './Botones';
 
 const NuevoSensor = () => {

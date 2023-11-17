@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Typography } from 'antd';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
-import VentanaAbierta from '../images/ventanaAbierta.png';
-import VentanaCerrada from '../images/VentanaCerrada.png';
+import VentanaAbierta from '../images/ventanaabierta.webp';
+import styled from 'styled-components';
+import VentanaCerrada from '../images/ventanacerrada.webp';
 import { MostrarNotificacion } from './MostrarNotificacion';
-import './alerta.css';
 
 const Ventana = ({name}) => {
     const [estadoBoton, cambiarEstadoBoton] = useState(false);
@@ -19,26 +19,22 @@ const Ventana = ({name}) => {
     }, [estadoBoton, condicion, name])
 
     return (
-        <div className='alineacion'>
+        <Alineacion>
             <Typography.Title level={5}>{name}</Typography.Title>
+            <div>
             {estadoBoton === true ?
                 <>
                 {condicion === true ?
-                    <div className='cerrada'>
-                        <img width="100%" src={VentanaCerrada} alt="vence" />
-                    </div>
+                    <img width="100%" src={VentanaCerrada} alt="vence" />
                     :
-                    <div className='abierta'>
-                        <img width="100%" src={VentanaAbierta} alt="venab" />
-                    </div>
+                    <img width="100%" src={VentanaAbierta} alt="venab" />
 
                 }
                 </>
                 :
-                <div>
-                    <img width="100%" src={VentanaCerrada} alt="vence" />
-                </div>
+                <img width="100%" src={VentanaCerrada} alt="vence" />
             }
+            </div>
             <br />
             <Switch
                 checkedChildren={<CheckOutlined />}
@@ -46,8 +42,12 @@ const Ventana = ({name}) => {
                 checked={estadoBoton}
                 onChange={(value) => cambiarEstadoBoton(value)}
             />
-        </div>
+        </Alineacion>
     );
 }
+
+const Alineacion = styled.div`
+    text-align: center;
+`;
  
 export default Ventana;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Button, message } from 'antd';
 import { Helmet } from 'react-helmet';
-import Crearcuenta from '../images/agregar-usuario.png';
+import Crearcuenta from '../images/agregar-usuario.webp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import { faLock, faAt } from '@fortawesome/free-solid-svg-icons';
@@ -23,7 +23,7 @@ const CrearCuenta = () => {
                 type: 'error',
                 content: 'Ya existe una cuenta con ese correo electrónico'
             });
-        }        
+        }
     }
 
     return (
@@ -31,7 +31,7 @@ const CrearCuenta = () => {
             <Helmet>
                 <title>Crear Cuenta</title>
             </Helmet>
-            <Centrar>
+            <ContenedorFormulario>
                 <Form form={form} name='registrarse' scrollToFirstError className='login-form' onFinish={handleSubmit} size='large'>
                     <Form.Item>
                         <Imagen>
@@ -64,13 +64,13 @@ const CrearCuenta = () => {
                         <Input.Password prefix={<FontAwesomeIcon icon={faLock} />} placeholder='Confirmar contraseña'/>
                     </Form.Item>
                     <Form.Item >
-                        <Button type="primary" htmlType="submit" className="login-form-button" style={{width: "100%"}}>
+                        <Button type="primary" htmlType="submit" className="login-form-button" style={{width: "100%"}} shape="round">
                             Crear Cuenta
-                        </Button>
-                        O <Button type='link' href="/iniciar-sesion" >Iniciar Sesión</Button>
+                        </Button><br /> <br />
+                        O <Button type='link' onClick={() => navigate("/iniciar-sesion")} size='Default'>Iniciar Sesión</Button>
                     </Form.Item>
                 </Form>
-            </Centrar>
+            </ContenedorFormulario>
         </Contenedor>
     );
 }
@@ -83,8 +83,8 @@ const Contenedor = styled.div`
     align-items: center;
 `;
 
-const Centrar = styled.div`
-    width: 20rem;
+const ContenedorFormulario = styled.div`
+    width: 19rem;
     height: auto;
     border: 1px solid;
     border-radius: 16px;

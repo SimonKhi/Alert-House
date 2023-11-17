@@ -1,30 +1,33 @@
 import styled from "styled-components";
 import theme from "../theme";
-import Icono from "../images/icono.png";
+import Icono from "../images/icono.webp";
 import BotonUsuario from "./BotonUsuario";
 import { useAuth } from '../context/AuthContext';
 import { useEffect, useState } from "react";
-import { OmitProps } from "antd/es/transfer/ListBody";
 
 const Header = () => {
     const {usuario} = useAuth();
     const [estado, cambiarEstado] = useState(false);
+    const [nombre, cambiarNombre] = useState('');
 
     useEffect(() => {
         if(usuario){
             cambiarEstado(true)
+            cambiarNombre(usuario.email.split('@')[0]);
         }else {
             cambiarEstado(false)
+            cambiarNombre('');
         }
     }, [usuario]);
 
     return (
         <ContenedorHeader user={estado} >
+            {(estado) ? <Relleno></Relleno> : <></>}
             <Logo href="/" >
                 <Imagen src={Icono} alt="" />
                 <Titulo>Alert house</Titulo>
             </Logo>
-            {(estado) ? <BotonUsuario /> : <></>}
+            {(estado) ? <BotonUsuario nombre={nombre}/> : <></>}
         </ContenedorHeader>
     );
 }
@@ -35,11 +38,19 @@ const ContenedorHeader = styled.div`
     align-items: center;
     height: 55px;
     max-width: 100vw;
-    padding: ${(props) => props.user === true ? '0px 15px 0px 120px': '0px'};
+    padding: ${(props) => props.user === true ? '0rem 2.5rem 0rem 2.5rem': '0px'};
     /* background-color: #001011; */
 
-    @media (max-width: 540px) {
+    @media (max-width: 767px) {
         padding: 0px 15px 0px 15px;
+    }
+`;
+
+const Relleno = styled.div`
+    width: 135px;
+    
+    @media (max-width: 767px) {
+        width: 0;
     }
 `;
 
@@ -52,7 +63,6 @@ const Titulo = styled.h2`
 const Imagen = styled.img`
     height: 70%;
     padding-right: 10px;
-    color: red;
 `;
 
 const Logo = styled.div`
@@ -63,7 +73,7 @@ const Logo = styled.div`
     margin-left: auto;
     margin-right: auto;
 
-    @media(max-width: 540px) {
+    @media(max-width: 767px) {
         justify-content: right;
         margin-left: 0;
     }

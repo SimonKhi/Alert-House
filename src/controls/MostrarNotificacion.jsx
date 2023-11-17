@@ -1,4 +1,5 @@
 import { notification } from "antd";
+import './alarma.css';
 
 export const MostrarNotificacion = (name) => {
     notification.warning({
