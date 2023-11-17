@@ -13,7 +13,7 @@ const PanelControl = () => {
             </Helmet>
             <Superior>
                 <ContenedorControles>
-                    <Typography.Title type='warning' level={3}>Controles</Typography.Title>
+                    <Typography.Title level={3}>Controles</Typography.Title>
                     <Controles />   
                 </ContenedorControles>
                 <ContenedorAlarma>

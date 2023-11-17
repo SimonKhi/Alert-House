@@ -12,7 +12,6 @@ const Superior = styled.div`
 const ContenedorControles = styled.div`
     flex: 6;
     padding: 15px;
-    background-color: aqua;
 `;
 
 const ContenedorAlarma = styled.div`

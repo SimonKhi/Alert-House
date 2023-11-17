@@ -4,9 +4,9 @@ import SensorAbierto from '../images/sensor-abierto.webp';
 import SensorCerrado from '../images/sensor-cerrado.webp';
 import { BotonSensor } from './Botones';
 
-const NuevoSensor = () => {
+const NuevoSensor = ({name}) => {
     const [estado, cambiarEstado] = useState(true);
-
+    
     return (
         <div>
             <BotonSensor onClick={() => cambiarEstado(!estado)}>
@@ -16,7 +16,7 @@ const NuevoSensor = () => {
                         <img width="100%" src={SensorAbierto} alt='' />
                     }
             </BotonSensor>
-            <Typography.Title level={5} align="center">Puerta Principal</Typography.Title>
+            <Typography.Title level={5} align="center">{name}</Typography.Title>
         </div>
     );
 }

@@ -12,7 +12,7 @@ const Controles = () => {
 
     return (
         <ContenedorSensores>
-            <NuevoSensor />
+            <NuevoSensor name='Puerta Trasera'/>
             <ContenedorAgregar>
                 <BotonAgregar onClick={() => cambiarVisibleAgregar(true)}>
                     <FontAwesomeIcon icon={faCirclePlus} size='5x'/>

@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
-import { Modal, Form, Input, Select } from 'antd';
+import React from 'react';
+import { Modal, Form, Input, Select, message } from 'antd';
+import { useAuth } from '../context/AuthContext';
+import agregarSensor from '../firebase/agregarSensor';
 
 const ModuloAgregar = ({ visible, cambiarVisible}) => {
-    const [sensores, cambiarSensore] = useState([
-        { id:1, nombre:"Puerta Principal", tipo:"Puerta"}, 
-        {id:2, nombre:"Ventana Sala", tipo:"Ventana"},
-    ]);
     const [formulario] = Form.useForm();
     const { Option } = Select;
+    const { usuario } = useAuth();
 
     const NuevoSensor = (values) => {
-        console.log('Mostrar valores', values);
-        cambiarSensore([...sensores, {id: 3, nombre:values.nombre, tipo:values.acceso}])
+        agregarSensor({
+            acceso: values.acceso,
+            nombre: values.nombre,
+            uidUsuario: usuario.uid,
+        }).then(() => {
+            message.open({type: 'success', content: 'Sensor agregado con éxito'})
+        }).catch((error) => {
+            console.log(error);
+            message.open({type: 'error', content: 'Hubo un error al agregar el sensor'})
+        });
         cambiarVisible(false);
-        console.log(sensores);
     }
 
     const CerrarModal = () => {
@@ -40,8 +46,8 @@ const ModuloAgregar = ({ visible, cambiarVisible}) => {
             <Form form={formulario} name='agregar_sensor'>
                 <Form.Item name="acceso" label="Acceso" rules={[{required: true, message: "Seleccione un acceso"},]}>
                     <Select placeholder="Seleccione el acceso" allowClear>
-                        <Option value="puerta">puerta</Option>
-                        <Option value="ventana">ventana</Option>
+                        <Option value="Puerta">Puerta</Option>
+                        <Option value="Ventana">Ventana</Option>
                     </Select>
                 </Form.Item> 
                 <Form.Item name="nombre" label="Nombre" rules={[{required: true, message: 'Introduzca un nombre',},]} >
