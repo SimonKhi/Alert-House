@@ -8,21 +8,17 @@ import { MostrarNotificacion } from './MostrarNotificacion';
 import useConexion from '../hooks/useConexion';
 
 const Puerta = ({sensor}) => {
-    const [estadoBoton, cambiarEstadoBoton] = useState(true);
-    /* Este valor (condicion) se saca de la BD, si la puerta esta cerrada = True, si esta abierta = False */
-    const [condicion, cambiarCondicion] = useState(true);
-    const nombre = sensor.acceso.concat(' ', sensor.nombre);
     const [estado, enabled] = useConexion(sensor);
-    console.log('estado: ', estado);
-    console.log('enable: ', enabled);
+    const [estadoBoton, cambiarEstadoBoton] = useState(enabled);
+    const nombre = sensor.acceso.concat(' ', sensor.nombre);
 
     useEffect(() => {
         if(estadoBoton === true) {
-            if(condicion === false){
+            if(estado === false){
                 MostrarNotificacion(nombre);
             }
         }
-    }, [estadoBoton, condicion])
+    }, [estadoBoton, estado, nombre])
 
     return (
         <>
@@ -30,7 +26,7 @@ const Puerta = ({sensor}) => {
             <Tam>
             {estadoBoton === true ?
                 <>
-                {condicion === true ?
+                {estado === true ?
                     <img width="100%" src={PuertaCerrada} alt="" />
                     :
                     <img width="100%" src={PuertaAbierta} alt="" />

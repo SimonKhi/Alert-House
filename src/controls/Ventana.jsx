@@ -4,19 +4,20 @@ import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import VentanaAbierta from '../images/ventanaabierta.webp';
 import VentanaCerrada from '../images/ventanacerrada.webp';
 import { MostrarNotificacion } from './MostrarNotificacion';
+import useConexion from '../hooks/useConexion';
 
-const Ventana = ({sensor, key}) => {
-    const [estadoBoton, cambiarEstadoBoton] = useState(false);
-    const [condicion, cambiarCondicion] = useState(false);
+const Ventana = ({sensor}) => {
+    const [estado, enabled] = useConexion(sensor);
+    const [estadoBoton, cambiarEstadoBoton] = useState(enabled);
     const nombre = sensor.acceso.concat(' ', sensor.nombre);
 
     useEffect(() => {
         if(estadoBoton === true) {
-            if(condicion === false){
+            if(estado === false){
                 MostrarNotificacion(nombre);
             }
         }
-    }, [estadoBoton, condicion, nombre])
+    }, [estadoBoton, estado, nombre])
 
     return (
         <>
@@ -24,7 +25,7 @@ const Ventana = ({sensor, key}) => {
             <div>
             {estadoBoton === true ?
                 <>
-                {condicion === true ?
+                {estado === true ?
                     <img width="100%" src={VentanaCerrada} alt="vence" />
                     :
                     <img width="100%" src={VentanaAbierta} alt="venab" />
