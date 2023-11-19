@@ -6,7 +6,7 @@ import ModuloAgregar from './ModuloAgregar';
 import { BotonAgregar } from './Botones';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
-import useObtenerSensores from '../hooks/useObtenerSensor';
+import useObtenerSensores from '../hooks/useObtenerSensores';
 
 const Controles = () => {
     const [visibleAgregar, cambiarVisibleAgregar] = useState(false);

@@ -5,12 +5,16 @@ import styled from 'styled-components';
 import PuertaAbierta from '../images/puertaabierta.webp';
 import PuertaCerrada from '../images/puertacerrada.webp';
 import { MostrarNotificacion } from './MostrarNotificacion';
+import useConexion from '../hooks/useConexion';
 
 const Puerta = ({sensor}) => {
     const [estadoBoton, cambiarEstadoBoton] = useState(true);
     /* Este valor (condicion) se saca de la BD, si la puerta esta cerrada = True, si esta abierta = False */
-    const [condicion, cambiarCondicion] = useState(true); 
+    const [condicion, cambiarCondicion] = useState(true);
     const nombre = sensor.acceso.concat(' ', sensor.nombre);
+    const [estado, enabled] = useConexion(sensor);
+    console.log('estado: ', estado);
+    console.log('enable: ', enabled);
 
     useEffect(() => {
         if(estadoBoton === true) {

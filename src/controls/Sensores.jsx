@@ -2,7 +2,7 @@ import React from 'react';
 import Ventana from './Ventana';
 import Puerta from './Puerta';
 import styled from 'styled-components';
-import useObtenerSensores from '../hooks/useObtenerSensor';
+import useObtenerSensores from '../hooks/useObtenerSensores';
 
 const Sensores = () => {
     const [sensores] = useObtenerSensores()

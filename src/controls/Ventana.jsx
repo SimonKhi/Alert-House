@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Switch, Typography } from 'antd';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import VentanaAbierta from '../images/ventanaabierta.webp';
-import styled from 'styled-components';
 import VentanaCerrada from '../images/ventanacerrada.webp';
 import { MostrarNotificacion } from './MostrarNotificacion';
 
