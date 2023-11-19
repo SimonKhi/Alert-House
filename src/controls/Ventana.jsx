@@ -6,21 +6,22 @@ import styled from 'styled-components';
 import VentanaCerrada from '../images/ventanacerrada.webp';
 import { MostrarNotificacion } from './MostrarNotificacion';
 
-const Ventana = ({name}) => {
+const Ventana = ({sensor, key}) => {
     const [estadoBoton, cambiarEstadoBoton] = useState(false);
     const [condicion, cambiarCondicion] = useState(false);
+    const nombre = sensor.acceso.concat(' ', sensor.nombre);
 
     useEffect(() => {
         if(estadoBoton === true) {
             if(condicion === false){
-                MostrarNotificacion(name);
+                MostrarNotificacion(nombre);
             }
         }
-    }, [estadoBoton, condicion, name])
+    }, [estadoBoton, condicion, nombre])
 
     return (
-        <Alineacion>
-            <Typography.Title level={5}>{name}</Typography.Title>
+        <>
+            <Typography.Title level={5}>{nombre}</Typography.Title>
             <div>
             {estadoBoton === true ?
                 <>
@@ -42,12 +43,8 @@ const Ventana = ({name}) => {
                 checked={estadoBoton}
                 onChange={(value) => cambiarEstadoBoton(value)}
             />
-        </Alineacion>
+        </>
     );
 }
-
-const Alineacion = styled.div`
-    text-align: center;
-`;
  
 export default Ventana;

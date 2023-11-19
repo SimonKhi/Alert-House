@@ -6,13 +6,21 @@ import ModuloAgregar from './ModuloAgregar';
 import { BotonAgregar } from './Botones';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import useObtenerSensores from '../hooks/useObtenerSensor';
 
 const Controles = () => {
     const [visibleAgregar, cambiarVisibleAgregar] = useState(false);
+    const [sensores] = useObtenerSensores();
 
     return (
         <ContenedorSensores>
-            <NuevoSensor name='Puerta Trasera'/>
+            {sensores.map((sensor) => {
+                return(
+                    <div key={sensor.id}>
+                        <NuevoSensor sensor={sensor}/>
+                    </div>
+                )
+            })}
             <ContenedorAgregar>
                 <BotonAgregar onClick={() => cambiarVisibleAgregar(true)}>
                     <FontAwesomeIcon icon={faCirclePlus} size='5x'/>
