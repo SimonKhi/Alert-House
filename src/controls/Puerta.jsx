@@ -5,40 +5,43 @@ import styled from 'styled-components';
 import PuertaAbierta from '../images/puertaabierta.webp';
 import PuertaCerrada from '../images/puertacerrada.webp';
 import { MostrarNotificacion } from './MostrarNotificacion';
+import useConexion from '../hooks/useConexion';
 import { actualizarSensor } from '../firebase/actualizarCondiciones';
 
 const Puerta = ({sensor}) => {
-    const [estado, cambiarEstado] = useState();
-    const [estadoBoton, cambiarEstadoBoton] = useState();
+    const [estado, enabled] = useConexion(sensor)
+    // const [estado, cambiarEstado] = useState();
+    const [estadoSwitch, cambiarEstadoSwitch] = useState(enabled);
     const nombre = sensor.acceso.concat(' ', sensor.nombre);
     
     // Conseguimos el estado del Switch una vez con el primer renderizado
-    useEffect(() => {
-        sensor.enabled === 1 ? cambiarEstadoBoton(true) : cambiarEstadoBoton(false)
-    },[]);
+    // useEffect(() => {
+    //     sensor.enabled === 1 ? cambiarEstadoSwitch(true) : cambiarEstadoSwitch(false)
+    // },[]);
 
     // Conseguimos el estado del sensor cada vez que haya un cambio
-    useEffect(() => {
-        sensor.estado === 1 ? cambiarEstado(true) : cambiarEstado(false)
-    },[sensor.estado]);
+    // useEffect(() => {
+    //     sensor.estado === 1 ? cambiarEstado(true) : cambiarEstado(false)
+    // },[sensor.estado]);
 
-    // Lógica para mostrar la Notificación y actualizar la activación del sensor
+    // Lógica para mostrar la Notificación y actualizar el estado 
+    // de la activación del sensor, son se guarda
    useEffect(() => {
-        if(estadoBoton === true){
+        if(estadoSwitch === true){
             if(estado === false){
                 MostrarNotificacion(nombre);
             }
             actualizarSensor({id: sensor.id, enabled: 1})
-        } else if (estadoBoton === false) {
+        } else if (estadoSwitch === false) {
             actualizarSensor({id: sensor.id, enabled: 0})
         }
-    }, [estado, estadoBoton])
+    }, [estado, estadoSwitch])
 
     return (
         <>
             <Typography.Title level={5}>{nombre}</Typography.Title>
             <Tam>
-            {estadoBoton === true ?
+            {estadoSwitch === true ?
                 <>
                 {estado === true ?
                     <img width="100%" src={PuertaCerrada} alt="" />
@@ -54,8 +57,8 @@ const Puerta = ({sensor}) => {
             <Switch
                 checkedChildren={<CheckOutlined />}
                 unCheckedChildren={<CloseOutlined />}
-                checked={estadoBoton}
-                onChange={(value) => cambiarEstadoBoton(value)}
+                checked={estadoSwitch}
+                onChange={(value) => cambiarEstadoSwitch(value)}
             />
         </>
     );
