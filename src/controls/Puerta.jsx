@@ -5,24 +5,22 @@ import styled from 'styled-components';
 import PuertaAbierta from '../images/puertaabierta.webp';
 import PuertaCerrada from '../images/puertacerrada.webp';
 import { MostrarNotificacion } from './MostrarNotificacion';
-import useConexion from '../hooks/useConexion';
 import { actualizarSensor } from '../firebase/actualizarCondiciones';
 
 const Puerta = ({sensor}) => {
-    const [estado, enabled] = useConexion(sensor)
-    // const [estado, cambiarEstado] = useState();
-    const [estadoSwitch, cambiarEstadoSwitch] = useState(enabled);
+    const [estado, cambiarEstado] = useState();
+    const [estadoSwitch, cambiarEstadoSwitch] = useState();
     const nombre = sensor.acceso.concat(' ', sensor.nombre);
     
     // Conseguimos el estado del Switch una vez con el primer renderizado
-    // useEffect(() => {
-    //     sensor.enabled === 1 ? cambiarEstadoSwitch(true) : cambiarEstadoSwitch(false)
-    // },[]);
+    useEffect(() => {
+        sensor.enabled === 1 ? cambiarEstadoSwitch(true) : cambiarEstadoSwitch(false)
+    },[]);
 
     // Conseguimos el estado del sensor cada vez que haya un cambio
-    // useEffect(() => {
-    //     sensor.estado === 1 ? cambiarEstado(true) : cambiarEstado(false)
-    // },[sensor.estado]);
+    useEffect(() => {
+        sensor.estado === 1 ? cambiarEstado(true) : cambiarEstado(false)
+    },[sensor.estado]);
 
     // Lógica para mostrar la Notificación y actualizar el estado 
     // de la activación del sensor, son se guarda

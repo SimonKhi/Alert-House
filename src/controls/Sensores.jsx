@@ -6,7 +6,7 @@ import useObtenerSensores from '../hooks/useObtenerSensores';
 
 const Sensores = () => {
     const [sensores] = useObtenerSensores()
-    
+
     return (
         <>
             {sensores.map((sensor) => {
@@ -24,12 +24,24 @@ const Sensores = () => {
                     )
                 }
             })}
+            {sensores.length === 0 &&
+                <NoSensores>
+                    <h2>Aun no hay sensores agregados</h2>
+                </NoSensores>
+            }
+
         </>
     );
 }
 
 const Alineacion = styled.div`
     text-align: center;
+`;
+
+const NoSensores = styled.div`
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
 `;
  
 export default Sensores;

@@ -4,8 +4,13 @@ import Controles from '../controls/Controles';
 import Alarma from '../controls/Alarma';
 import Sensores from '../controls/Sensores';
 import { Superior, ContenedorAlarma, ContenedorControles, ContenedorSensores, TituloSensores } from './Dimensiones';
+import { useAuth } from '../context/AuthContext';
+import agregarAlarma from '../firebase/agregarAlarma';
 
 const PanelControl = () => {
+    const { usuario } = useAuth();
+    agregarAlarma(usuario.uid);
+
     return (
         <>
             <Helmet>

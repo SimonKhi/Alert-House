@@ -17,4 +17,12 @@ const actualizarControl = async ({id, estado}) => {
     })
 }
 
-export { actualizarSensor, actualizarControl };
+const actualizarAlarma = async ({id, enabled}) => {
+    const documento = doc(db, 'alarma', id);
+
+    return await updateDoc(documento, {
+        enabled: enabled,
+    })
+}
+
+export { actualizarSensor, actualizarControl, actualizarAlarma };

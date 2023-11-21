@@ -6,8 +6,6 @@ import { collection, query, where, onSnapshot, orderBy } from "firebase/firestor
 const useObtenerSensores = () => {
     const { usuario } = useAuth();
     const [sensores, cambiarSensores] = useState([]);
-    // const [estado, cambiarEstado] = useState();
-    // const [enable, cambiarEnable] = useState();
 
     useEffect(() => {
         const consulta = query(
