@@ -2,7 +2,7 @@ import { db } from "./firebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const agregarAlarma = (uidUsuario) => {
-    const nuevo_id = 'alarma-'.concat('',uidUsuario.substring(0,15));
+    const nuevo_id = 'alarma-'.concat(uidUsuario.substring(0,15));
 
     const Espera = async() => {
         const existe = await getDoc(doc(db, 'alarma', nuevo_id));
