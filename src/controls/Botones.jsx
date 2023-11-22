@@ -15,10 +15,9 @@ const BotonActivado = styled.button`
     margin-top: 5%;
     margin-bottom: 5%;
 
-    /* &:hover {
-        background: #f9f7f7;
-        color: rgb(226, 226, 226);
-    } */
+    &:hover {
+        background-color: rgb(255, 245, 245);
+    }
 `;
 
 const BotonDesactivado = styled.button`
@@ -33,7 +32,11 @@ const BotonDesactivado = styled.button`
     overflow: hidden;
     margin-top: 5%;
     margin-bottom: 5%;
-    color: rgb(111, 111, 111);
+    color: rgb(41, 41, 41);
+    
+    &:hover {
+        color: rgb(111, 111, 111);
+    }
 `;
 
 const BotonSensor = styled.button`
@@ -41,6 +44,10 @@ const BotonSensor = styled.button`
     border: none;
     background: none;
     cursor: pointer;
+
+    /* &:hover {
+        background: rgb(243, 243, 243);
+    } */
 `;
 
 const BotonAgregar = styled.div`
@@ -53,6 +60,11 @@ const BotonAgregar = styled.div`
     color: white;
     background: ${theme.borde};
     border: 5px solid ${theme.borde};
+
+    &:hover{
+        /* background: rgb(111, 111, 111); */
+        color: rgb(235, 235, 235);
+    }
 `;
 
 const BotonLink = styled(Link)`

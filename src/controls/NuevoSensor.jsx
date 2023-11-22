@@ -4,6 +4,7 @@ import SensorAbierto from '../images/sensor-abierto.webp';
 import SensorCerrado from '../images/sensor-cerrado.webp';
 import { BotonSensor } from './Botones';
 import { actualizarControl } from '../firebase/actualizarCondiciones';
+import Opciones from './Opciones';
 
 const NuevoSensor = ({sensor}) => {
     const [condicion, cambiarCondicion] = useState();
@@ -35,6 +36,7 @@ const NuevoSensor = ({sensor}) => {
                     }
             </BotonSensor>
             <Typography.Title level={5} align="center">{nombre}</Typography.Title>
+            <Opciones sensor={sensor} id={sensor.id}/>
         </>
     );
 }

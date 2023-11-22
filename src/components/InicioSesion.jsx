@@ -72,7 +72,7 @@ const InicioSesion = () => {
                         <Button type="primary" htmlType="submit" className="login-form-button" style={{width: "100%"}} shape="round">
                             Iniciar Sesión
                         </Button><br /><br/>
-                        <p><Button onClick={AccesoGoogle} size='Default' style={{width: "45%", marginRight: "10px"}} shape="round">
+                        <p><Button onClick={AccesoGoogle} size='Default' style={{width: "47%", marginRight: "10px"}} shape="round">
                             <FontAwesomeIcon icon={faGoogle} />oogle
                         </Button>
                         O<Button type='link' onClick={() => navigate("/crear-cuenta")} size='Default' >Registrarse ahora</Button></p>

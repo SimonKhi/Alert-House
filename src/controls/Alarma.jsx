@@ -4,8 +4,8 @@ import { faVolumeUp, faVolumeOff, faVolumeMute } from "@fortawesome/free-solid-s
 import { BotonActivado, BotonDesactivado } from "./Botones";
 import useObtenerAlarma from '../hooks/useObtenerAlarma';
 import { actualizarAlarma } from '../firebase/actualizarCondiciones';
-import "./alarma.css";
 import useObtenerSensores from '../hooks/useObtenerSensores';
+import "./alarma.css";
 
 const Alarma = () => {
     const [sensores] = useObtenerSensores();
@@ -13,7 +13,7 @@ const Alarma = () => {
     const alarma = alar[0];
     const [estadoAlarma, cambiarEstadoAlarma] = useState();
     const [condicion, cambiarCondicion] = useState();
-
+    
     // Para conseguir el estado del enabled del boton alarma
     useEffect(() => {
         if(alarma){
@@ -35,6 +35,9 @@ const Alarma = () => {
         } catch {
             cambiarCondicion(true);
         }
+        
+        if(sensores.length === 0)
+            cambiarCondicion(false)
     }, [sensores]);
     
     const AccionButton = () => {
