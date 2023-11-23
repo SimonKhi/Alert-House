@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Space, Popconfirm } from 'antd';
-import { CloseCircleOutlined, EditOutlined } from '@ant-design/icons'
+import { Tooltip, Popconfirm } from 'antd';
+import { CloseCircleOutlined, EditOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 import eliminarSensor from '../firebase/eliminarSensor';
 import ModuloSensor from './ModuloSensor';
+import { ContenedorOpciones } from '../components/Dimensiones';
+import { BotonOpcion } from './Botones';
 
-const Opciones = ({sensor, id}) => {
+const Opciones = ({sensor}) => {
     const [visibleEditar, cambiarVisibleEditar] = useState(false);
 
     const Mostrar = () => {
@@ -13,19 +15,24 @@ const Opciones = ({sensor, id}) => {
 
     return (
         <>
-            <Space>
+            <ContenedorOpciones>
                 <Popconfirm
                     title='Eliminar Sensor'
                     description='¿Está seguro de eliminarlo?'
-                    okText='Sí'
-                    cancelText='No'
-                    onConfirm={() => eliminarSensor(id)}
+                    okText='Confirmar'
+                    cancelText='Cancelar'
+                    icon={<QuestionCircleOutlined style={{color: 'red'}}/>}
+                    onConfirm={() => eliminarSensor(sensor.id)}
                 >
-                    <Button type='text' shape='circle' icon={<CloseCircleOutlined style={{fontSize:"27px"}}/>}/>
+                    <Tooltip title="Eliminar Sensor" placement='bottom'>
+                        <BotonOpcion><CloseCircleOutlined/></BotonOpcion>
+                    </Tooltip>
                 </Popconfirm>
-                <Button type='text' shape='circle' icon={<EditOutlined style={{fontSize:"25px"}}/>} onClick={() => Mostrar()}/>
+                <Tooltip title='Editar Sensor' placement='bottom'>
+                    <BotonOpcion onClick={() => Mostrar()}><EditOutlined/></BotonOpcion>
+                </Tooltip>
                 <ModuloSensor visible={visibleEditar} cambiarVisible={cambiarVisibleEditar} sensor={sensor}/>
-            </Space>
+            </ContenedorOpciones>
         </>
     );
 }

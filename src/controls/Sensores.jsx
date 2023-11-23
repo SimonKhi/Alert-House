@@ -1,8 +1,8 @@
 import React from 'react';
 import Ventana from './Ventana';
 import Puerta from './Puerta';
-import styled from 'styled-components';
 import useObtenerSensores from '../hooks/useObtenerSensores';
+import { Alineacion, NoSensores, Aviso } from '../components/Dimensiones';
 
 const Sensores = () => {
     const [sensores] = useObtenerSensores()
@@ -26,22 +26,12 @@ const Sensores = () => {
             })}
             {sensores.length === 0 &&
                 <NoSensores>
-                    <h2>Aun no hay sensores agregados</h2>
+                    <Aviso>Aun no hay sensores agregados</Aviso>
                 </NoSensores>
             }
 
         </>
     );
 }
-
-const Alineacion = styled.div`
-    text-align: center;
-`;
-
-const NoSensores = styled.div`
-    grid-column: 1 / -1;
-    display: flex;
-    justify-content: center;
-`;
  
 export default Sensores;

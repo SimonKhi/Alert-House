@@ -8,7 +8,6 @@ const ModuloSensor = ({ visible, cambiarVisible, sensor}) => {
     const [formulario] = Form.useForm();
     const { Option } = Select;
     const { usuario } = useAuth();
-
     const [selectAcceso, cambiarSelectAcceso] = useState()
     const [inputNombre, cambiarInputNombre] = useState('')
     
@@ -19,7 +18,7 @@ const ModuloSensor = ({ visible, cambiarVisible, sensor}) => {
                 cambiarInputNombre(sensor.nombre);
             }
         }
-    }, [sensor, usuario, visible])
+    }, [sensor, usuario])
 
     const NuevoSensor = (values) => {
         if(sensor){

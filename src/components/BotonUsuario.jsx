@@ -1,26 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { auth } from '../firebase/firebaseConfig';
 import { signOut, deleteUser } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { Dropdown, Modal } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { BotonLink, BotonTexto } from '../controls/Botones';
-import styled from 'styled-components';
+import { BotonLink, BotonTexto, BotonLink1 } from '../controls/Botones';
+import { ContenedorUsuario } from './Dimensiones';
 
 const BotonUsuario = ({nombre}) => {
     const navigate = useNavigate();
-    const [mostrar, cambiarMostrar] = useState(false);
+    const [modal, contextHolder] = Modal.useModal()
+
     const items = [
         {
-            label: <BotonLink seleccion='true' onClick={() => CerrarSesion()}>Cerrar Sesión</BotonLink>,
+            label: <BotonLink1 seleccion='true' onClick={() => CerrarSesion()}>Cerrar Sesión</BotonLink1>,
             key: '0',
         },
         {
-            label: <BotonLink seleccion='true' onClick={() => cambiarMostrar(true)}>Eliminar Cuenta</BotonLink>,
+            label: <BotonLink1 seleccion='true' onClick={() => confirmar()}>Eliminar Cuenta</BotonLink1>,
             key: '1',
         },
     ];
     
+    const confirmar = () => {
+        modal.confirm({
+            title: 'Eliminar Cuenta',
+            content: '¿Está seguro que desea eliminar su cuenta?',
+            okText: "Confirmar",
+            cancelText: "Cancelar",
+            onOk(){ console.log('eliminar')}
+        })
+    }
+
     const CerrarSesion = async () => {
         try{
             await signOut(auth);
@@ -43,35 +54,17 @@ const BotonUsuario = ({nombre}) => {
     
     return (
         <ContenedorUsuario>
-            <Dropdown menu={{items}} trigger={['click']} placement="bottomRight">
+            <Dropdown menu={{items}} /*trigger={['click']}*/ placement="bottomRight" >
                 <BotonLink onClick={(e) => e.preventDefault()}>
                     <span>
-                        <UserOutlined />
+                        <UserOutlined style={{fontSize: '22px'}}/>
                     </span>
                     <BotonTexto>{nombre}</BotonTexto>
-                    {/* <Space>
-                        <UserOutlined />{nombre}
-                    </Space> */}
                 </BotonLink>
             </Dropdown>
-            <Modal 
-                open={mostrar}
-                title='¿Está seguro que desea eliminar su cuenta?'
-                okText="Por supuesto que Sí"
-                cancelText="No, ya me arrepentí"
-                onCancel={() => cambiarMostrar(false)}
-                onOk={BorrarUsuario}
-            />
+            {contextHolder}
         </ContenedorUsuario>
     );
 }
-
-const ContenedorUsuario = styled.div`
-    width: 135px;
-
-    @media (max-width: 481px){
-        width: 30px;
-    }
-`;
  
 export default BotonUsuario;

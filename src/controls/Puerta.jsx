@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Typography } from 'antd';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
-import styled from 'styled-components';
 import PuertaAbierta from '../images/puertaabierta.webp';
 import PuertaCerrada from '../images/puertacerrada.webp';
 import { MostrarNotificacion } from './MostrarNotificacion';
 import { actualizarSensor } from '../firebase/actualizarCondiciones';
+import { Tam } from '../components/Dimensiones';
 
 const Puerta = ({sensor}) => {
     const [estado, cambiarEstado] = useState();
@@ -42,13 +42,13 @@ const Puerta = ({sensor}) => {
             {estadoSwitch === true ?
                 <>
                 {estado === true ?
-                    <img width="100%" src={PuertaCerrada} alt="" />
+                    <img width="100%" src={PuertaCerrada} alt="puece" />
                     :
-                    <img width="100%" src={PuertaAbierta} alt="" />
+                    <img width="100%" src={PuertaAbierta} alt="pueab" />
                 }
                 </>
                 :
-                <img width="100%" src={PuertaCerrada} alt="" />
+                <img width="100%" src={PuertaCerrada} alt="puece" />
             }
             </Tam>
             <br/>
@@ -61,11 +61,5 @@ const Puerta = ({sensor}) => {
         </>
     );
 }
-
-const Tam = styled.div`
-    width: 65%;
-    margin-left: auto;
-    margin-right: auto;
-`;
  
 export default Puerta;

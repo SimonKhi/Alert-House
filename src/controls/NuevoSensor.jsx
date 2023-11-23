@@ -5,6 +5,7 @@ import SensorCerrado from '../images/sensor-cerrado.webp';
 import { BotonSensor } from './Botones';
 import { actualizarControl } from '../firebase/actualizarCondiciones';
 import Opciones from './Opciones';
+import theme from '../theme';
 
 const NuevoSensor = ({sensor}) => {
     const [condicion, cambiarCondicion] = useState();
@@ -30,13 +31,13 @@ const NuevoSensor = ({sensor}) => {
         <>
             <BotonSensor onClick={() => AccionBoton()}>
                     {condicion === true ?
-                        <img width="100%" src={SensorCerrado} alt='' />
-                    :
-                        <img width="100%" src={SensorAbierto} alt='' />
+                        <img width="100%" src={SensorCerrado} alt='sence' />
+                        :
+                        <img width="100%" src={SensorAbierto} alt='senab' />
                     }
             </BotonSensor>
-            <Typography.Title level={5} align="center">{nombre}</Typography.Title>
-            <Opciones sensor={sensor} id={sensor.id}/>
+            <Typography.Text align="center" style={{color: theme.danube_950}}>{nombre}</Typography.Text>
+            <Opciones sensor={sensor}/>
         </>
     );
 }

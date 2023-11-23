@@ -13,7 +13,8 @@ html {
  
 body {
     font-family: 'Open Sans', sans-serif;
-    background-color: #FbFbFb;
+    /* background-color: #FbFbFb; */
+    background: linear-gradient(180deg, #8abbd0, #e5eff4);
 }
  
 #root {
@@ -25,6 +26,7 @@ body {
 ::-webkit-scrollbar {
     width: 8px;     /* Tamaño del scroll en vertical */
     height: 8px;
+    background: linear-gradient(180deg, #8abbd0, #e5eff4);
 }
 
 ::-webkit-scrollbar-thumb {
