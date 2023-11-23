@@ -131,4 +131,29 @@ const BotonOpcion = styled.button`
     }
 `;
 
-export { BotonActivado, BotonDesactivado, BotonSensor, BotonAgregar, BotonLink, BotonTexto, BotonLink1, BotonOpcion };
+const BotonRegresar = styled.button`
+    display: inline-block;
+    width: 220px;
+    height: 60px;
+    border-radius: 20px;
+    border: 1px solid ${theme.danube_800};
+    background: ${theme.danube_100};
+    color: ${theme.danube_950};
+    font-size: larger;
+    cursor: pointer;
+
+    &:hover {
+        background: ${theme.danube_300};
+
+        animation:slide-left 0.4s linear both}
+        
+        @keyframes slide-left{
+            0%{transform:translateX(0)}
+            100%{transform:translateX(-50px)}
+    }
+`;
+
+export { 
+    BotonActivado, BotonDesactivado, BotonSensor, BotonAgregar, BotonLink, 
+    BotonTexto, BotonLink1, BotonOpcion, BotonRegresar 
+};

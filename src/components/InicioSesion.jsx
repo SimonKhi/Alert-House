@@ -8,7 +8,7 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { auth } from '../firebase/firebaseConfig';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { Formulario, ContenedorFormulario, Centrar } from './Dimensiones';
+import { Contenedor, ContenedorFormulario, Centrar } from './Dimensiones';
 
 const InicioSesion = () => {
     const [form] = Form.useForm();
@@ -46,7 +46,7 @@ const InicioSesion = () => {
     }
 
     return (
-        <Formulario>
+        <Contenedor>
             <Helmet>
                 <title>Iniciar Sesion</title>
             </Helmet>
@@ -74,12 +74,12 @@ const InicioSesion = () => {
                             <Button onClick={AccesoGoogle} size='Default' style={{width: "47%", marginRight: "10px"}} shape="round">
                                 <FontAwesomeIcon icon={faGoogle} />oogle
                             </Button>
-                            O<Button type='link' onClick={() => navigate("/crear-cuenta")} size='Default' >Registrarse ahora</Button>
+                            O<Button type='link' onClick={() => navigate("/crear-cuenta")} size='Default' style={{width: "45%"}} >Crear Cuenta</Button>
                         </Centrar>
                     </Form.Item>
                 </Form>
             </ContenedorFormulario>
-        </Formulario>
+        </Contenedor>
     );
 }
 

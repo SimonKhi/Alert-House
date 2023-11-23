@@ -7,7 +7,7 @@ import { faLock, faAt } from '@fortawesome/free-solid-svg-icons';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
-import { Formulario, ContenedorFormulario, Centrar } from './Dimensiones';
+import { Contenedor, ContenedorFormulario, Centrar } from './Dimensiones';
 
 const CrearCuenta = () => {
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ const CrearCuenta = () => {
     }
 
     return (
-        <Formulario>
+        <Contenedor>
             <Helmet>
                 <title>Crear Cuenta</title>
             </Helmet>
@@ -73,7 +73,7 @@ const CrearCuenta = () => {
                     </Form.Item>
                 </Form>
             </ContenedorFormulario>
-        </Formulario>
+        </Contenedor>
     );
 }
  

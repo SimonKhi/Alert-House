@@ -3,7 +3,7 @@ import { auth } from '../firebase/firebaseConfig';
 import { deleteUser, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { Dropdown, Modal, message } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined, UserDeleteOutlined,LogoutOutlined } from '@ant-design/icons';
 import { BotonLink, BotonTexto, BotonLink1 } from '../controls/Botones';
 import { ContenedorUsuario } from './Dimensiones';
 import useObtenerSensores from '../hooks/useObtenerSensores';
@@ -18,11 +18,11 @@ const BotonUsuario = ({nombre}) => {
 
     const items = [
         {
-            label: <BotonLink1 seleccion='true' onClick={() => CerrarSesion()}>Cerrar Sesión</BotonLink1>,
+            label: <BotonLink1 seleccion='true' onClick={() => CerrarSesion()} ><LogoutOutlined />Cerrar Sesión</BotonLink1>,
             key: '0',
         },
         {
-            label: <BotonLink1 seleccion='true' onClick={() => confirmar()}>Eliminar Cuenta</BotonLink1>,
+            label: <BotonLink1 seleccion='true' onClick={() => confirmar()}><UserDeleteOutlined /> Eliminar Cuenta</BotonLink1>,
             key: '1',
         },
     ];

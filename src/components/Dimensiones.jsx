@@ -159,7 +159,7 @@ const ContenedorOpciones = styled.div`
     align-items: end;
 `;
 
-const Formulario = styled.div`
+const Contenedor = styled.div`
     display: flex;
     width: 100%;
     min-height: calc(100vh - 55px);
@@ -178,13 +178,22 @@ const ContenedorFormulario = styled.div`
  
 const Centrar = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+`;
+
+const ContenedorError = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90%;
+    min-height: 70vh;
+    justify-content: space-around;
 `;
 
 export { 
     Superior, ContenedorAlarma, ContenedorControles, ContenedorSensores, TituloSensores, 
     ContenedorHeader, Relleno, Titulo, Imagen, Logo, EncapsulaControles, ContenedorAgregar, 
     AlineacionSensor, Alineacion, NoSensores, Tam, Aviso, ContenedorUsuario, ContenedorOpciones, 
-    Formulario, ContenedorFormulario, Centrar 
+    Contenedor, ContenedorFormulario, Centrar, ContenedorError
 };
