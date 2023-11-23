@@ -159,4 +159,32 @@ const ContenedorOpciones = styled.div`
     align-items: end;
 `;
 
-export { Superior, ContenedorAlarma, ContenedorControles, ContenedorSensores, TituloSensores, ContenedorHeader, Relleno, Titulo, Imagen, Logo, EncapsulaControles, ContenedorAgregar, AlineacionSensor, Alineacion, NoSensores, Tam, Aviso, ContenedorUsuario, ContenedorOpciones };
+const Formulario = styled.div`
+    display: flex;
+    width: 100%;
+    min-height: calc(100vh - 55px);
+    justify-content: center;
+    align-items: center;
+`;
+
+const ContenedorFormulario = styled.div`
+    width: 19rem;
+    border: 1px solid ${theme.danube_400};
+    border-radius: 16px;
+    box-shadow: 10px crimson ;
+    padding: 1.5rem 1.5rem .5rem 1.5rem;
+    background-color: ${theme.danube_50};
+`;
+ 
+const Centrar = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export { 
+    Superior, ContenedorAlarma, ContenedorControles, ContenedorSensores, TituloSensores, 
+    ContenedorHeader, Relleno, Titulo, Imagen, Logo, EncapsulaControles, ContenedorAgregar, 
+    AlineacionSensor, Alineacion, NoSensores, Tam, Aviso, ContenedorUsuario, ContenedorOpciones, 
+    Formulario, ContenedorFormulario, Centrar 
+};

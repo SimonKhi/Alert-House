@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { Form, Input, Button, message } from 'antd';
 import Iniciosesion from '../images/user-interface.webp'
@@ -9,6 +8,7 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { auth } from '../firebase/firebaseConfig';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { Formulario, ContenedorFormulario, Centrar } from './Dimensiones';
 
 const InicioSesion = () => {
     const [form] = Form.useForm();
@@ -19,8 +19,6 @@ const InicioSesion = () => {
             await signInWithEmailAndPassword(auth, values.email, values.password);
             navigate('/');
         }catch(error){
-            // console.log('code',error.code); 
-            // console.log('message', error.message);
             let mensaje;
             switch(error.code){
                 case 'auth/network-request-failed':
@@ -48,7 +46,7 @@ const InicioSesion = () => {
     }
 
     return (
-        <Contenedor>
+        <Formulario>
             <Helmet>
                 <title>Iniciar Sesion</title>
             </Helmet>
@@ -72,36 +70,17 @@ const InicioSesion = () => {
                         <Button type="primary" htmlType="submit" className="login-form-button" style={{width: "100%"}} shape="round">
                             Iniciar Sesión
                         </Button><br /><br/>
-                        <p><Button onClick={AccesoGoogle} size='Default' style={{width: "47%", marginRight: "10px"}} shape="round">
-                            <FontAwesomeIcon icon={faGoogle} />oogle
-                        </Button>
-                        O<Button type='link' onClick={() => navigate("/crear-cuenta")} size='Default' >Registrarse ahora</Button></p>
+                        <Centrar>
+                            <Button onClick={AccesoGoogle} size='Default' style={{width: "47%", marginRight: "10px"}} shape="round">
+                                <FontAwesomeIcon icon={faGoogle} />oogle
+                            </Button>
+                            O<Button type='link' onClick={() => navigate("/crear-cuenta")} size='Default' >Registrarse ahora</Button>
+                        </Centrar>
                     </Form.Item>
                 </Form>
             </ContenedorFormulario>
-        </Contenedor>
+        </Formulario>
     );
 }
-
-const Contenedor = styled.div`
-    display: flex;
-    width: 100%;
-    min-height: calc(100vh - 55px);
-    justify-content: center;
-    align-items: center;
-`;
-
-const ContenedorFormulario = styled.div`
-    width: 19rem;
-    border: 1px solid;
-    border-radius: 16px;
-    padding: 1.5rem;
-    background-color: #fff;
-`;
- 
-const Centrar = styled.div`
-    display: flex;
-    justify-content: center;
-`;
 
 export default InicioSesion;

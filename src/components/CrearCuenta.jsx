@@ -3,11 +3,11 @@ import { Form, Input, Button, message } from 'antd';
 import { Helmet } from 'react-helmet';
 import Crearcuenta from '../images/agregar-usuario.webp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styled from 'styled-components';
 import { faLock, faAt } from '@fortawesome/free-solid-svg-icons';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
+import { Formulario, ContenedorFormulario, Centrar } from './Dimensiones';
 
 const CrearCuenta = () => {
     const navigate = useNavigate();
@@ -27,16 +27,16 @@ const CrearCuenta = () => {
     }
 
     return (
-        <Contenedor>
+        <Formulario>
             <Helmet>
                 <title>Crear Cuenta</title>
             </Helmet>
             <ContenedorFormulario>
                 <Form form={form} name='registrarse' scrollToFirstError className='login-form' onFinish={handleSubmit} size='large'>
                     <Form.Item>
-                        <Imagen>
+                        <Centrar>
                             <img src={Crearcuenta} width="35%" alt="" styled="justify-content: center"/>
-                        </Imagen>        
+                        </Centrar>        
                     </Form.Item>
                     <Form.Item name='email' rules={[
                         { type: 'email', message: 'Introduzca un correo válido',},
@@ -63,39 +63,18 @@ const CrearCuenta = () => {
                     ]}>
                         <Input.Password prefix={<FontAwesomeIcon icon={faLock} />} placeholder='Confirmar contraseña'/>
                     </Form.Item>
-                    <Form.Item >
+                    <Form.Item style={{ }}>
                         <Button type="primary" htmlType="submit" className="login-form-button" style={{width: "100%"}} shape="round">
                             Crear Cuenta
                         </Button><br /> <br />
-                        O <Button type='link' onClick={() => navigate("/iniciar-sesion")} size='Default'>Iniciar Sesión</Button>
+                        <Centrar>
+                            <Button type='link' onClick={() => navigate("/iniciar-sesion")} size='Default' >Iniciar Sesión</Button>
+                        </Centrar>
                     </Form.Item>
                 </Form>
             </ContenedorFormulario>
-        </Contenedor>
+        </Formulario>
     );
 }
-
-const Contenedor = styled.div`
-    display: flex;
-    width: 100%;
-    min-height: calc(100vh - 55px);
-    justify-content: center;
-    align-items: center;
-`;
-
-const ContenedorFormulario = styled.div`
-    width: 19rem;
-    height: auto;
-    border: 1px solid;
-    border-radius: 16px;
-    padding: 1.5rem;
-    background-color: #fff;
-`;
- 
-const Imagen = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;    
-`;
  
 export default CrearCuenta;

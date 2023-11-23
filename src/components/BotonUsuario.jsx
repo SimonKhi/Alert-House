@@ -1,15 +1,20 @@
 import React from 'react';
 import { auth } from '../firebase/firebaseConfig';
-import { signOut, deleteUser } from 'firebase/auth';
+import { deleteUser, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { Dropdown, Modal } from 'antd';
+import { Dropdown, Modal, message } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { BotonLink, BotonTexto, BotonLink1 } from '../controls/Botones';
 import { ContenedorUsuario } from './Dimensiones';
+import useObtenerSensores from '../hooks/useObtenerSensores';
+import eliminarSensor from '../firebase/eliminarSensor';
+import eliminarAlarma from '../firebase/eliminarAlarma';
 
 const BotonUsuario = ({nombre}) => {
-    const navigate = useNavigate();
     const [modal, contextHolder] = Modal.useModal()
+    const [sensores] = useObtenerSensores();
+    const navigate = useNavigate();
+    const user = auth.currentUser;
 
     const items = [
         {
@@ -28,7 +33,7 @@ const BotonUsuario = ({nombre}) => {
             content: '¿Está seguro que desea eliminar su cuenta?',
             okText: "Confirmar",
             cancelText: "Cancelar",
-            onOk(){ console.log('eliminar')}
+            onOk(){BorrarUsuario()},
         })
     }
 
@@ -42,19 +47,24 @@ const BotonUsuario = ({nombre}) => {
     }
 
     const BorrarUsuario = async () => {
-        const user = auth.currentUser;
+        const id = 'alarma-'.concat(user.uid.substring(0,15));
+        
         try{
-            cambiarMostrar(false);
-            await deleteUser(user);
+            await deleteUser(user)
+            sensores.forEach((sensor) => {
+                eliminarSensor(sensor.id);
+            })
+            eliminarAlarma(id);
             navigate('/iniciar-sesion');
         }catch(error){
-            console.log(error);
+            console.log('Error', error);
+            message.open({type: 'info', content: 'Vuela a Iniciar Sesión'})
         }
     }
     
     return (
         <ContenedorUsuario>
-            <Dropdown menu={{items}} /*trigger={['click']}*/ placement="bottomRight" >
+            <Dropdown menu={{items}} placement="bottomRight" >
                 <BotonLink onClick={(e) => e.preventDefault()}>
                     <span>
                         <UserOutlined style={{fontSize: '22px'}}/>

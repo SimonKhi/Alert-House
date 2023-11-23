@@ -6,6 +6,7 @@ import PuertaCerrada from '../images/puertacerrada.webp';
 import { MostrarNotificacion } from './MostrarNotificacion';
 import { actualizarSensor } from '../firebase/actualizarCondiciones';
 import { Tam } from '../components/Dimensiones';
+import theme from '../theme';
 
 const Puerta = ({sensor}) => {
     const [estado, cambiarEstado] = useState();
@@ -37,7 +38,7 @@ const Puerta = ({sensor}) => {
 
     return (
         <>
-            <Typography.Title level={5}>{nombre}</Typography.Title>
+            <Typography.Title level={5} style={{color: theme.danube_950}}>{nombre}</Typography.Title>
             <Tam>
             {estadoSwitch === true ?
                 <>

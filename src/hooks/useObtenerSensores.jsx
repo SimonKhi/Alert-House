@@ -8,19 +8,21 @@ const useObtenerSensores = () => {
     const [sensores, cambiarSensores] = useState([]);
 
     useEffect(() => {
-        const consulta = query(
-            collection(db, 'sensores'),
-            where('uidUsuario', '==', usuario.uid),
-            orderBy('fecha','asc')
-        );
+        if(usuario !== null){
+            const consulta = query(
+                collection(db, 'sensores'),
+                where('uidUsuario', '==', usuario.uid),
+                orderBy('fecha','asc')
+            );
+    
+            const unsuscribe = onSnapshot(consulta, (snapshot) => {
+                cambiarSensores(snapshot.docs.map((sensor) => {
+                    return {...sensor.data(), id: sensor.id}
+                }));
+            });
+            return unsuscribe;
+        }
 
-        const unsuscribe = onSnapshot(consulta, (snapshot) => {
-            cambiarSensores(snapshot.docs.map((sensor) => {
-                return {...sensor.data(), id: sensor.id}
-            }));
-        });
-
-        return unsuscribe;
     }, [usuario]);
 
     return [sensores];
