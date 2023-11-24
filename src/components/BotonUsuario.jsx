@@ -50,12 +50,12 @@ const BotonUsuario = ({nombre}) => {
         const id = 'alarma-'.concat(user.uid.substring(0,15));
         
         try{
-            await deleteUser(user)
             sensores.forEach((sensor) => {
                 eliminarSensor(sensor.id);
             })
             eliminarAlarma(id);
             navigate('/iniciar-sesion');
+            await deleteUser(user)
         }catch(error){
             console.log('Error', error);
             message.open({type: 'info', content: 'Vuela a Iniciar Sesión'})

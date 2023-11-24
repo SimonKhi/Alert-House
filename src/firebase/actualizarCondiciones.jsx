@@ -18,9 +18,9 @@ const actualizarControl = async ({id, estado}) => {
 }
 
 const actualizarAlarma = async ({id, enabled}) => {
-    const sensor = doc(db, 'alarma', id);
+    const alarma = doc(db, 'alarmas', id);
 
-    return await updateDoc(sensor, {
+    return await updateDoc(alarma, {
         enabled: enabled,
     })
 }

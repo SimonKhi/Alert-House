@@ -22,7 +22,7 @@ const Header = () => {
     return (
         <ContenedorHeader user={estado} >
             {(estado) ? <Relleno></Relleno> : <></>}
-            <Logo>
+            <Logo user={estado}>
                 <Imagen src={Icono} alt="alert-house" />
                 <Titulo>Alert house</Titulo>
             </Logo>

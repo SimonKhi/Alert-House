@@ -81,8 +81,8 @@ const Logo = styled.div`
     margin-right: auto;
 
     @media(max-width: 767px) {
-        justify-content: right;
-        margin-left: 0;
+        justify-content: ${props => props.user === true ? 'right' : 'center'};
+        margin-left: ${props => props.user === true ? '0' : 'auto'};
     }
 `;
 

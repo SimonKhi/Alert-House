@@ -5,24 +5,24 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 
 const useObtenerAlarma = () => {
     const { usuario } = useAuth();
-    const [alarma, cambiarAlarma] = useState([]);
+    const [alarmas, cambiarAlarmas] = useState([]);
 
     useEffect(() => {
         const consulta = query(
-            collection(db, 'alarma'),
+            collection(db, 'alarmas'),
             where('uidUsuario', '==', usuario.uid)
         );
         
         const unsuscribe = onSnapshot(consulta, (snapshot)=>{
-            cambiarAlarma(snapshot.docs.map((alarm) => {
-                return{...alarm.data(), id: alarm.id}
+            cambiarAlarmas(snapshot.docs.map((alarma) => {
+                return{...alarma.data(), id: alarma.id}
             }));
         });
 
         return unsuscribe;
     }, [usuario])
 
-    return [alarma];
+    return [alarmas];
 }
  
 export default useObtenerAlarma;

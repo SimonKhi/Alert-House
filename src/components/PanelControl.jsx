@@ -11,7 +11,7 @@ import { Superior, ContenedorAlarma, ContenedorControles, ContenedorSensores, Ti
 
 const PanelControl = () => {
     const { usuario } = useAuth();
-    agregarAlarma(usuario.uid);
+    agregarAlarma(usuario.uid)
 
     return (
         <>
