@@ -13,6 +13,7 @@ const Alarma = () => {
     const alarma = alar[0];
     const [estadoAlarma, cambiarEstadoAlarma] = useState();
     const [condicion, cambiarCondicion] = useState();
+    const audio = new Audio('./src/aud/cyber_alarms.mp3');
     
     // Para conseguir el estado del enabled del boton alarma
     useEffect(() => {
@@ -40,6 +41,28 @@ const Alarma = () => {
             cambiarCondicion(false)
     }, [sensores]);
     
+    // Para reproducir la alarma
+    useEffect(() => {
+
+        const reproducirAudioInfinitamente = () => {
+            audio.addEventListener('ended', reproducirAudioInfinitamente);
+            audio.play();
+        };
+
+        if(condicion && estadoAlarma){
+            reproducirAudioInfinitamente()
+        }
+
+        return () => {
+            if (audio) {
+              audio.removeEventListener('ended', reproducirAudioInfinitamente);
+              audio.pause();
+              audio.currentTime = 0;
+            }
+        };
+        
+    },[condicion,estadoAlarma])
+
     const AccionButton = () => {
         if(!estadoAlarma === true){
             actualizarAlarma({id: alarma.id, enabled: 1})
